@@ -1,0 +1,246 @@
+===========================================================================
+      ___    ____  ___________ _                 __      __
+     /   |  / __ \/_  __/ ___/(_)___ ___  __  __/ /___ _/ /_____  _____
+    / /| | / /_/ / / /  \__ \/ / __ `__ \/ / / / / __ `/ __/ __ \/ ___/
+   / ___ |/ ____/ / /  ___/ / / / / / / / /_/ / / /_/ / /_/ /_/ / /
+  /_/  |_/_/     /_/  /____/_/_/ /_/ /_/\__,_/_/\__,_/\__/\____/_/
+
+  Florian Roth, Nextron Systems, v0.9.3, April 2022
+
+  Select the test-set that you want to run:
+
+  [0] RUN EVERY TEST
+  [1] Collection
+  [2] Command and Control
+  [3] Credential Access
+  [4] Defense Evasion
+  [5] Discovery
+  [6] Execution
+  [7] Lateral Movement
+  [8] Persistence
+  [9] Privilege Escalation
+
+  [C] CobaltStrike Beacon Simulation
+
+  [A] Apply AV Exclusions in Registry
+  [S] Settings
+  [E] Exit
+
+Your selection (then press ENTER): 0
+
+###########################################################################
+RUNNING SET: "collection"
+
+===========================================================================
+WORKING DIRS AND FILES
+Creating typical attacker working directory C:\TMP ...
+Dropping typical temporary files into that directory
+
+###########################################################################
+RUNNING SET: "command-and-control"
+
+===========================================================================
+C2 Access
+Using curl to access well-known C2 addresses
+C2: msupdater.com
+Result: 200
+C2: twitterdocs.com
+Result: 000
+C2: freenow.chickenkiller.com
+Result: 000
+===========================================================================
+DNS CACHE
+Creating DNS Cache entries for well-known malicious C2 servers
+C2: msupdater.com
+C2: twitterdocs.com
+C2: freenow.chickenkiller.com
+*** UnKnown이(가) freenow.chickenkiller.com을(를) 찾을 수 없습니다. Non-existent domain
+C2: www.googleaccountsservices.com
+*** UnKnown이(가) www.googleaccountsservices.com을(를) 찾을 수 없습니다. Non-existent domain
+===========================================================================
+MALICIOUS UA
+Using malicious user agents to access web sites
+HttpBrowser RAT
+Result: 200
+Dyre / Upatre
+Result: 200
+Sality
+Result: 200
+NJRat
+Result: 200
+===========================================================================
+NETCAT ALTERNATIVE
+Dropping a Powershell netcat alternative into the APT dir
+===========================================================================
+WMI Backdoor C2
+Using Matt Graeber's WMIBackdoor to contact a C2 in certain intervals
+Set-WmiInstance : 액세스가 거부되었습니다.
+위치 C:\TMP\WMIBackdoor.ps1:515 문자:22
++             $Timer = Set-WmiInstance @Arguments
++                      ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Set-WmiInstance], ManagementException
+    + FullyQualifiedErrorId : SetWMIManagementException,Microsoft.PowerShell.Commands.SetWmiInstance
+
+
+###########################################################################
+RUNNING SET: "credential-access"
+
+===========================================================================
+LSASS DUMP
+Dumping LSASS memory with ProcDump
+
+ProcDump v9.0 - Sysinternals process dump utility
+Copyright (C) 2009-2017 Mark Russinovich and Andrew Richards
+Sysinternals - www.sysinternals.com
+
+Error opening lsass.exe (676):
+???? ???????. (0x00000005, 5)
+
+===========================================================================
+MIMIKATZ
+Dropping a custom mimikatz build into the APT dir
+Executing it to get it into memory and saving the output to out.tmp ...
+Extracting Mimik4tz output to target directory ...
+Running Invoke-Mimikatz: downloading from github, run from memory
+액세스가 거부되었습니다.
+===========================================================================
+EVENTLOG
+Creating Eventlog Entries indicating the use of password dumpers
+오류: 액세스가 거부되었습니다.
+오류: 액세스가 거부되었습니다.
+
+###########################################################################
+RUNNING SET: "defense-evasion"
+
+===========================================================================
+GUEST USER
+Activating guest user account
+시스템 오류 5이(가) 생겼습니다.
+
+액세스가 거부되었습니다.
+
+Adding the guest user to the local administrators group
+시스템 오류 5이(가) 생겼습니다.
+
+액세스가 거부되었습니다.
+
+===========================================================================
+SUSPICIOUS LOCATIONS
+Well-known system files in suspicious locations
+Placing a svchost.exe (which is actually srvany.exe) into C:\Users\Public
+Running the misplaced system file
+===========================================================================
+HOSTS
+Modifying the hosts file
+Adding update.microsoft.com mapping to private IP address
+액세스가 거부되었습니다.
+액세스가 거부되었습니다.
+액세스가 거부되었습니다.
+액세스가 거부되었습니다.
+===========================================================================
+CACTUSTORCH
+Using certutil to drop a CactusTorch shellcode lanucher injecting bind shell (port 1234/tcp) into rundll32.exe
+Fixing possible problems with JavaScript on the system
+오류: 잘못된 구문입니다.
+사용법을 보려면 "REG IMPORT /?"를 입력하십시오.
+Downloading the CactusTorch dropper (press Enter if it takes more than 20s)
+액세스가 거부되었습니다.
+Executing the CactusTorch dropper
+===========================================================================
+OBFUSCATION
+Dropping obfuscated RAR file with JPG extension
+
+###########################################################################
+RUNNING SET: "discovery"
+
+===========================================================================
+NETBIOS Discovery
+Executes nbtscan on the local network
+*timeout (normal end of scan)
+*timeout (normal end of scan)
+*timeout (normal end of scan)
+Dumping sample scan output to the C:\Users\None\AppData\Local\Temp dir in case that no scan returned a result
+===========================================================================
+RECON ACTIVITY
+Executes commands that are often used by attackers to get information
+
+###########################################################################
+RUNNING SET: "execution"
+
+===========================================================================
+PSEXEC
+Dropping a modified PsExec into the APT dir
+Running a cmd.exe as LOCAL_SYSTEM
+
+PsExec v1.98 - Execute processes remotely
+Copyright (C) 2001-2010 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+Couldn't install PsExec service:
+액세스가 거부되었습니다.
+===========================================================================
+REMOTE EXECUTION TOOL
+Dropping a remote execution tool into the APT dir
+
+###########################################################################
+RUNNING SET: "lateral-movement"
+
+
+###########################################################################
+RUNNING SET: "persistence"
+
+===========================================================================
+At Job Creation
+Registering mimikatz in At job
+AT 명령은 더 이상 사용되지 않습니다. 대신 schtasks.exe를 사용하십시오.
+
+지원되지 않는 요청입니다.
+===========================================================================
+Backdoor Run Key
+Registering a malicious RUN key
+오류: 액세스가 거부되었습니다.
+===========================================================================
+Scheduled Task XML
+Creates a scheduled task via XML file using Invoke-SchtasksBackdoor.ps1
+2022-12-15T09:36:34
+===========================================================================
+Schtasks Creation
+Registering mimikatz in scheduled task
+성공: 예약된 작업 "GameOver"을(를) 만들었습니다.
+===========================================================================
+SETHC BACKDOOR
+Two methods: Replacement of sethc.exe / Debugger registration
+Backing up old sethc.exe
+액세스가 거부되었습니다.
+        0개 파일이 복사되었습니다.
+
+Trying to replace the real sethc.exe - administrator rights needed
+Instead registering cmd.exe as debugger for sethc.exe
+오류: 액세스가 거부되었습니다.
+At least place a temporary and manipulated sethc.exe in the TEMP folder
+===========================================================================
+UserInitMprLogonScript Persistence
+Using the UserInitMprLogonScript key to get persistence
+작업을 완료했습니다.
+===========================================================================
+WEBSHELLS
+Dropping web shell in new WWW directory
+===========================================================================
+WMI Backdoor
+Using Matt Graeber's WMIBackdoor to kill local procexp64.exe when it starts
+Set-WmiInstance : 액세스가 거부되었습니다.
+위치 C:\TMP\WMIBackdoor.ps1:552 문자:15
++     $Filter = Set-WmiInstance @FilterParams
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Set-WmiInstance], ManagementException
+    + FullyQualifiedErrorId : SetWMIManagementException,Microsoft.PowerShell.Commands.SetWmiInstance
+
+
+###########################################################################
+RUNNING SET: "privilege-escalation"
+
+===========================================================================
+Finished
+Check for errors and make sure you opened the command line as 'Administrator'
++1은(는) 예상되지 않았습니다.
+C:\Users\None\Desktop\APTSimulator_pw_apt (1)\APTSimulator>
